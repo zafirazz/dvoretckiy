@@ -1,0 +1,23 @@
+{
+    "CHAT ID 1": [
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>",
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>",
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>"
+    ],
+    "CHAT ID 2": [
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>",
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>",
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>"
+    ],
+    "CHAT ID 3": [
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>",
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>",
+        "<DD-MMM-YYYY HH:MM>,<CategoryString>,<Amount>"
+    ],
+    "538326997": [
+        "14-Dec-2021 11:15,Трансопрт,50.0"
+    ],
+    "838484407": [
+        "22-Dec-2021 19:25,Покупки,90.0"
+    ]
+}
