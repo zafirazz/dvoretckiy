@@ -3,12 +3,15 @@ import re
 import os
 import telebot
 import json
+import config
+import cProfile
 import sched, time
 from telebot import types
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import datetime
+from config import API_TOKEN
 
-API_TOKEN = '5022985056:AAEJo59DvPkCmQgGgSdCL16GZb-bfDgvUXI'
+API_TOKEN = config.API_TOKEN
 bot = telebot.TeleBot(token=API_TOKEN)
 
 choice = {}
@@ -28,6 +31,8 @@ def greet_command(message):
     /report:Показать отчет о расходах за день/месяц,
     /clear: Очистить историю \n\n"""
     bot.reply_to(message, greet_text)
+    sti = open('AnimatedSticker.tgs', 'rb')
+    bot.send_sticker(message.chat.id, sti)
     
 #to collect spendings
 def Json(users_dict):
@@ -59,10 +64,6 @@ def report_command(message):
         markup.add(j)
     msg = bot.reply_to(message, 'За какой промежуток времени, Вы хотите увидеть отчет?', reply_markup=markup)
     bot.register_next_step_handler(msg, report)
-    
-Date_t = '%d-%b-%Y'
-Time_t = '%H:%M'
-Month_t = '%b-%Y'
 
 #main function
 def calculate(result):
@@ -79,7 +80,11 @@ def calculate(result):
     for i, value in total.items():
         total_text += str(i) + str(value) + ' ' + 'coм' + "\n"
     return total_text
-        
+
+Date_t = '%d-%b-%Y'
+Time_t = '%H:%M'
+Month_t = '%b-%Y'
+
 def report(message):
     try:
         chat_id = message.chat.id
@@ -157,7 +162,6 @@ def step2(message):
     except Exception as e:
         bot.reply_to(message, 'Ой!Кажется вышла ошибочка')
 
-
 def get_history(chat_id):
     global users_dict
     if (str(chat_id) in users_dict):
@@ -192,4 +196,9 @@ def clear_command(message):
         clear_history_text = "Ваша история расходов и так пуста."
     bot.send_message(chat_id, clear_history_text)
 
-bot.polling(none_stop=True)
+def main():
+    bot.polling(none_stop=True)
+
+if __name__ == '__main__':
+	cProfile.run('main()')
+    
